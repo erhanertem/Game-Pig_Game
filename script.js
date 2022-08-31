@@ -6,7 +6,7 @@ let scorePlayer1 = 0,
   currentPlayer = 1;
 
 let diceValue;
-let isGamePlayed = false;
+// let isGamePlayed = false;
 
 const diceFace = document.querySelector('.dice');
 const newGameBtn = document.querySelector('.btn--new');
@@ -26,38 +26,29 @@ function resetGame() {
     currentScores[i].textContent = '0';
     playerScores[i].textContent = '0';
   } // reset both players' player and current cores
-  diceFace.style.display = 'none'; // turn off dice img till next draw
+  diceFace.style.visibility = 'hidden'; // turn off dice img till next draw
   currentSessionScore = 0;
+  diceValue = '';
 }
 
 function rollDice() {
   diceValue = Math.trunc(Math.random() * 6) + 1;
   console.log(diceValue);
-  diceFace.style.display = 'block'; // show dice img
+  diceFace.style.visibility = 'visible'; // show dice img
+  holdRollBtn.style.visibility = 'visible';
   diceFace.src = `dice-${diceValue}.png`; // show the dice face of corresponding number by diverging the src attribute of the img element
 }
 
 function startGame($currentPlayer) {
+  //ROLL DICE & DISPLAY
   rollDice(); //generate a random dice roll
-
-  // control point for the dice roll
+  //PITSTOP: IS IT A 1?
   if (diceValue === 1) {
-    // switch players IN JS VAR
-    // if (currentPlayer === 1) {
-    //   currentPlayer = 2;
-    // } else {
-    //   currentPlayer = 1;
-    // }
-    //SWITCH IN HTML
     switchPlayers();
-    // console.log(`${currentPlayer}player`);
-    // startGame(currentPlayer);
-    resetGame();
   } else {
-    //add dice roll value to the current player's score
-    // console.log(currentSessionScore);
+    //Update current players score value with the dice value
     currentSessionScore += diceValue;
-    // console.log(`${currentPlayer}player`);
+    //Update the summed value on the HTML element
     if (currentPlayer === 1) {
       currentScore1.textContent = `${currentSessionScore}`;
     } else if (currentPlayer === 2) {
@@ -65,6 +56,7 @@ function startGame($currentPlayer) {
     }
   }
 }
+
 //INITIALIZER
 resetGame();
 //LISTEN FOR NEWGAME BUTTON
@@ -74,13 +66,14 @@ newGameBtn.addEventListener('click', function () {
 
 //LISTEN FOR ROLL DICE BUTTON
 rollDiceBtn.addEventListener('click', function () {
-  isGamePlayed = true;
+  // isGamePlayed = true;
   startGame(currentPlayer);
 });
 //LISTEN FOR HOLD BUTTON
 holdRollBtn.addEventListener('click', function () {
   // console.log(gamePlayed, currentPlayer);
-  if (isGamePlayed) {
+  console.log(`${diceValue}`);
+  if (diceValue !== 0) {
     storeScore();
     switchPlayers();
   } else {
@@ -90,9 +83,11 @@ holdRollBtn.addEventListener('click', function () {
 
 function storeScore() {
   console.log(currentSessionScore);
-  currentPlayer === 1
-    ? (storeScore1.textContent = currentSessionScore)
-    : (storeScore2.textContent = currentSessionScore);
+  if (currentPlayer === 1) {
+    storeScore1.textContent = `${currentSessionScore}`;
+  } else {
+    storeScore2.textContent = `${currentSessionScore}`;
+  }
 }
 
 function switchPlayers() {
@@ -103,9 +98,9 @@ function switchPlayers() {
   for (let i = 0; i <= 1; i++) {
     currentScores[i].textContent = '0';
   } // current score only reset
-  diceFace.style.display = 'none'; // turn off dice img till next draw
+  diceFace.style.visibility = 'hidden'; // turn off dice img till next draw
   currentSessionScore = 0;
-  isGamePlayed = true;
+  // isGamePlayed = false;
   // console.log(`${currentPlayer} !!!`);
 
   if (currentPlayer === 1) {
@@ -113,7 +108,7 @@ function switchPlayers() {
   } else {
     currentPlayer = 1;
   }
-
+  holdRollBtn.style.visibility = 'hidden';
   // console.log(`${currentPlayer} !!!`);
-  // startGame(currentPlayer);
+  // console.log(`${isGamePlayed} OHA !!!`);
 }
