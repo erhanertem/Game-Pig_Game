@@ -29,7 +29,7 @@ function resetGame() {
   diceFace.style.visibility = 'hidden'; // turn off dice img till next draw
   holdRollBtn.style.visibility = 'hidden';
   currentSessionScore = 0;
-  diceValue = 0;
+  diceValue = '';
 }
 
 function rollDice() {
@@ -74,19 +74,19 @@ rollDiceBtn.addEventListener('click', function () {
 });
 //LISTEN FOR HOLD BUTTON
 holdRollBtn.addEventListener('click', function () {
-  // console.log(gamePlayed, currentPlayer);
-  if (diceValue !== 0 || currentSessionScore) {
+  // console.log(diceValue, currentPlayer);
+  if (diceValue || currentSessionScore) {
     storeScore();
     if (!hasGameEnded) {
       switchPlayers();
     } // disallow background switch when the game won
+    diceValue = '';
   } else {
-    console.log('You havent initiated game yet!! Roll your dice Boi!!');
+    alert('You havent rolled dice yet Boi!!');
   }
 });
 
 function storeScore() {
-  console.log(currentSessionScore, 'omammaia');
   if (currentPlayer === 1) {
     scorePlayer1 += currentSessionScore;
     storeScore1.textContent = `${scorePlayer1}`;
