@@ -62,6 +62,8 @@ function startGame($currentPlayer) {
 resetGame();
 //LISTEN FOR NEWGAME BUTTON
 newGameBtn.addEventListener('click', function () {
+  scorePlayer1 = 0;
+  scorePlayer2 = 0;
   resetGame();
 });
 
@@ -90,7 +92,7 @@ function storeScore() {
     }
   } else {
     scorePlayer2 += currentSessionScore;
-    storeScore2.textContent = `${currentSessionScore}`;
+    storeScore2.textContent = `${scorePlayer2}`;
     if (scorePlayer2 >= 20) {
       winnerPopup('player2');
     }
@@ -117,5 +119,7 @@ function switchPlayers() {
 
 function winnerPopup($winner) {
   rollDiceBtn.style.visibility = 'hidden';
+  scorePlayer1 = 0;
+  scorePlayer2 = 0;
   console.log(`winner is ${$winner}`);
 }
