@@ -1,12 +1,10 @@
 'use strict';
 
-let scorePlayer1 = 0,
+let diceValue,
+  scorePlayer1 = 0,
   scorePlayer2 = 0,
   currentSessionScore = 0,
   currentPlayer = 1;
-
-let diceValue;
-// let isGamePlayed = false;
 
 const diceFace = document.querySelector('.dice');
 const newGameBtn = document.querySelector('.btn--new');
@@ -26,6 +24,7 @@ function resetGame() {
     currentScores[i].textContent = '0';
     playerScores[i].textContent = '0';
   } // reset both players' player and current cores
+  rollDiceBtn.style.visibility = 'visible';
   diceFace.style.visibility = 'hidden'; // turn off dice img till next draw
   holdRollBtn.style.visibility = 'hidden';
   currentSessionScore = 0;
@@ -35,6 +34,7 @@ function resetGame() {
 function rollDice() {
   diceValue = Math.trunc(Math.random() * 6) + 1;
   console.log(diceValue);
+
   diceFace.style.visibility = 'visible'; // show dice img
   holdRollBtn.style.visibility = 'visible';
   diceFace.src = `dice-${diceValue}.png`; // show the dice face of corresponding number by diverging the src attribute of the img element
@@ -67,7 +67,6 @@ newGameBtn.addEventListener('click', function () {
 
 //LISTEN FOR ROLL DICE BUTTON
 rollDiceBtn.addEventListener('click', function () {
-  // isGamePlayed = true;
   startGame(currentPlayer);
 });
 //LISTEN FOR HOLD BUTTON
@@ -86,9 +85,15 @@ function storeScore() {
   if (currentPlayer === 1) {
     scorePlayer1 += currentSessionScore;
     storeScore1.textContent = `${scorePlayer1}`;
+    if (scorePlayer1 >= 20) {
+      winnerPopup('player1');
+    }
   } else {
     scorePlayer2 += currentSessionScore;
     storeScore2.textContent = `${currentSessionScore}`;
+    if (scorePlayer2 >= 20) {
+      winnerPopup('player2');
+    }
   }
 }
 
@@ -102,15 +107,15 @@ function switchPlayers() {
   } // current score only reset
   diceFace.style.visibility = 'hidden'; // turn off dice img till next draw
   currentSessionScore = 0;
-  // isGamePlayed = false;
-  // console.log(`${currentPlayer} !!!`);
-
   if (currentPlayer === 1) {
     currentPlayer = 2;
   } else {
     currentPlayer = 1;
   }
   holdRollBtn.style.visibility = 'hidden';
-  // console.log(`${currentPlayer} !!!`);
-  // console.log(`${isGamePlayed} OHA !!!`);
+}
+
+function winnerPopup($winner) {
+  rollDiceBtn.style.visibility = 'hidden';
+  console.log(`winner is ${$winner}`);
 }
