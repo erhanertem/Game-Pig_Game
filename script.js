@@ -27,6 +27,7 @@ function resetGame() {
     playerScores[i].textContent = '0';
   } // reset both players' player and current cores
   diceFace.style.visibility = 'hidden'; // turn off dice img till next draw
+  holdRollBtn.style.visibility = 'hidden';
   currentSessionScore = 0;
   diceValue = '';
 }
@@ -72,8 +73,7 @@ rollDiceBtn.addEventListener('click', function () {
 //LISTEN FOR HOLD BUTTON
 holdRollBtn.addEventListener('click', function () {
   // console.log(gamePlayed, currentPlayer);
-  console.log(`${diceValue}`);
-  if (diceValue !== 0) {
+  if (diceValue !== 0 || currentSessionScore) {
     storeScore();
     switchPlayers();
   } else {
@@ -82,10 +82,12 @@ holdRollBtn.addEventListener('click', function () {
 });
 
 function storeScore() {
-  console.log(currentSessionScore);
+  console.log(currentSessionScore, 'omammaia');
   if (currentPlayer === 1) {
-    storeScore1.textContent = `${currentSessionScore}`;
+    scorePlayer1 += currentSessionScore;
+    storeScore1.textContent = `${scorePlayer1}`;
   } else {
+    scorePlayer2 += currentSessionScore;
     storeScore2.textContent = `${currentSessionScore}`;
   }
 }
