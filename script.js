@@ -42,20 +42,20 @@ function rollDice() {
   diceFace.src = `dice-${diceValue}.png`; // show the dice face of corresponding number by diverging the src attribute of the img element
 }
 
-function startGame(currentPlayer) {
+function startGame($currentPlayer) {
   rollDice(); //generate a random dice roll
 
   // control point for the dice roll
   if (diceValue === 1) {
     // switch players
-    // if (currentPlayer === 1) {
-    //   currentPlayer === 2;
-    // } else if (currentPlayer === 2) {
-    //   currentPlayer === 1;
-    // }
-    // //reset game
-    // resetGame(currentPlayer);
-    // startGame();
+    if (currentPlayer === 1) {
+      currentPlayer === 2;
+    } else {
+      currentPlayer === 1;
+    }
+    //reset game
+    resetGame($currentPlayer);
+    startGame($currentPlayer);
   } else {
     //add dice roll value to the current player's score
     currentSessionScore += diceValue;
