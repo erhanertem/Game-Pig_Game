@@ -31,8 +31,10 @@ function resetGame($currentPlayer) {
   diceFace.style.display = 'none'; // turn off dice img till next draw
   currentPlayer = $currentPlayer;
   currentSessionScore = 0;
-  player1.classList.add('player--active');
-  player2.classList.remove('player--active');
+
+  //switch class states
+  player1.classList.toggle('player--active');
+  player2.classList.toggle('player--active');
 }
 
 function rollDice() {
