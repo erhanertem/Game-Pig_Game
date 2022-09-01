@@ -87,13 +87,13 @@ function storeScore() {
   if (currentPlayer === 1) {
     scorePlayer1 += currentSessionScore;
     storeScore1.textContent = `${scorePlayer1}`;
-    if (scorePlayer1 >= 10) {
+    if (scorePlayer1 >= 100) {
       winnerPopup(player1);
     }
   } else {
     scorePlayer2 += currentSessionScore;
     storeScore2.textContent = `${scorePlayer2}`;
-    if (scorePlayer2 >= 10) {
+    if (scorePlayer2 >= 100) {
       winnerPopup(player2);
     }
   }
