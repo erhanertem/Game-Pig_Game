@@ -37,7 +37,7 @@ function resetGame() {
 
   //reset victory CSS object to default
   animationStyles = {
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    backgroundColor: '',
     animation: '',
   };
   // apply styles to the playerActive
@@ -118,6 +118,7 @@ function winnerPopup($winner) {
   scorePlayer1 = 0;
   scorePlayer2 = 0;
 
+  //Victory CSS object
   animationStyles = {
     backgroundColor: 'rgba(0, 0, 0, .8)',
     animation: 'blinker 1s linear infinite',
