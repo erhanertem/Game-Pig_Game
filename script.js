@@ -10,6 +10,7 @@ const diceFace = document.querySelector('.dice');
 const newGameBtn = document.querySelector('.btn--new');
 const rollDiceBtn = document.querySelector('.btn--roll');
 const holdRollBtn = document.querySelector('.btn--hold');
+const players = document.querySelectorAll('.player');
 const player1 = document.querySelector('.player--1');
 const player2 = document.querySelector('.player--2');
 const playerScores = document.querySelectorAll('.score');
@@ -30,21 +31,29 @@ function resetGame() {
   for (let i = 0; i <= 1; i++) {
     currentScores[i].textContent = '0';
     playerScores[i].textContent = '0';
+
+    //reset victory CSS object to default
+    animationStyles = {
+      backgroundColor: '',
+      color: '',
+      animation: '',
+    };
+    // apply styles to the playerActive
+    Object.assign(players[i].style, animationStyles);
   } // reset both players' player and current cores
   rollDiceBtn.style.visibility = 'visible';
   diceFace.style.visibility = 'hidden'; // turn off dice img till next draw
   holdRollBtn.style.visibility = 'hidden';
 
-  //reset victory CSS object to default
-  animationStyles = {
-    backgroundColor: '',
-    animation: '',
-  };
-  // apply styles to the playerActive
-  Object.assign(playerActive.style, animationStyles);
-
   currentSessionScore = 0;
   diceValue = '';
+  currentPlayer = 1;
+
+  if (!player1.classList.contains('player--active')) {
+    //switch class states
+    player1.classList.toggle('player--active');
+    player2.classList.toggle('player--active');
+  }
 }
 
 function rollDice() {
@@ -78,13 +87,13 @@ function storeScore() {
   if (currentPlayer === 1) {
     scorePlayer1 += currentSessionScore;
     storeScore1.textContent = `${scorePlayer1}`;
-    if (scorePlayer1 >= 100) {
+    if (scorePlayer1 >= 10) {
       winnerPopup(player1);
     }
   } else {
     scorePlayer2 += currentSessionScore;
     storeScore2.textContent = `${scorePlayer2}`;
-    if (scorePlayer2 >= 100) {
+    if (scorePlayer2 >= 10) {
       winnerPopup(player2);
     }
   }
