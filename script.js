@@ -4,8 +4,7 @@ let diceValue,
   scorePlayer1 = 0,
   scorePlayer2 = 0,
   currentSessionScore = 0,
-  currentPlayer = 1,
-  hasGameEnded = false;
+  currentPlayer = 1;
 
 const diceFace = document.querySelector('.dice');
 const newGameBtn = document.querySelector('.btn--new');
@@ -59,33 +58,6 @@ function startGame($currentPlayer) {
   }
 }
 
-//INITIALIZER
-resetGame();
-//LISTEN FOR NEWGAME BUTTON
-newGameBtn.addEventListener('click', function () {
-  scorePlayer1 = 0;
-  scorePlayer2 = 0;
-  resetGame();
-});
-
-//LISTEN FOR ROLL DICE BUTTON
-rollDiceBtn.addEventListener('click', function () {
-  startGame(currentPlayer);
-});
-//LISTEN FOR HOLD BUTTON
-holdRollBtn.addEventListener('click', function () {
-  // console.log(diceValue, currentPlayer);
-  if (diceValue || currentSessionScore) {
-    storeScore();
-    if (!hasGameEnded) {
-      switchPlayers();
-    } // disallow background switch when the game won
-    diceValue = '';
-  } else {
-    alert('You havent rolled dice yet Boi!!');
-  }
-});
-
 function storeScore() {
   if (currentPlayer === 1) {
     scorePlayer1 += currentSessionScore;
@@ -110,7 +82,7 @@ function switchPlayers() {
   for (let i = 0; i <= 1; i++) {
     currentScores[i].textContent = '0';
   } // current score only reset
-  diceFace.style.visibility = 'hidden'; // turn off dice img till next draw
+  // diceFace.style.visibility = 'visible'; // turn off dice img till next draw
   currentSessionScore = 0;
   if (currentPlayer === 1) {
     currentPlayer = 2;
@@ -124,6 +96,7 @@ function winnerPopup($winner) {
   rollDiceBtn.style.visibility = 'hidden';
   holdRollBtn.style.visibility = 'hidden';
   diceFace.style.visibility = 'hidden'; // turn off dice img till next draws
+
   for (let i = 0; i <= 1; i++) {
     currentScores[i].textContent = '0';
   } // current score only reset
@@ -131,5 +104,32 @@ function winnerPopup($winner) {
   scorePlayer2 = 0;
 
   console.log(`winner is ${$winner}`);
-  hasGameEnded = true;
 }
+
+// *****************GAME******************
+//****************************************
+//INITIALIZER
+resetGame();
+
+//LISTEN FOR NEWGAME BUTTON
+newGameBtn.addEventListener('click', function () {
+  scorePlayer1 = 0;
+  scorePlayer2 = 0;
+  resetGame();
+});
+
+//LISTEN FOR ROLL DICE BUTTON
+rollDiceBtn.addEventListener('click', function () {
+  startGame(currentPlayer);
+});
+
+//LISTEN FOR HOLD BUTTON
+holdRollBtn.addEventListener('click', function () {
+  // console.log(diceValue, currentPlayer);
+  if (diceValue) {
+    storeScore();
+    switchPlayers();
+  } else {
+    alert('You havent rolled dice yet Boi!!');
+  }
+});
