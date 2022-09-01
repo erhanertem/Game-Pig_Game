@@ -78,13 +78,13 @@ function storeScore() {
   if (currentPlayer === 1) {
     scorePlayer1 += currentSessionScore;
     storeScore1.textContent = `${scorePlayer1}`;
-    if (scorePlayer1 >= 10) {
+    if (scorePlayer1 >= 1) {
       winnerPopup(player1);
     }
   } else {
     scorePlayer2 += currentSessionScore;
     storeScore2.textContent = `${scorePlayer2}`;
-    if (scorePlayer2 >= 10) {
+    if (scorePlayer2 >= 1) {
       winnerPopup(player2);
     }
   }
@@ -120,13 +120,13 @@ function winnerPopup($winner) {
 
   //Victory CSS object
   animationStyles = {
-    backgroundColor: 'rgba(0, 0, 0, .8)',
-    animation: 'blinker 1s linear infinite',
+    backgroundColor: 'rgba(0, 0, 0, .6)',
+    color: 'white',
+    animation: 'blinker 1.5s ease-in-out infinite',
   };
   // apply styles to the playerActive
   Object.assign($winner.style, animationStyles);
-
-  console.log(`winner is ${$winner}`);
+  // console.log(`winner is ${$winner}`);
 }
 
 // *****************GAME******************
