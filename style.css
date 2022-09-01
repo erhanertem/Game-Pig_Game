@@ -49,7 +49,7 @@ main {
 }
 @media only screen and (max-width: 350px) {
   html {
-    font-size: 19%;
+    font-size: 16%;
   }
 }
 
