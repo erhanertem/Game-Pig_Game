@@ -8,6 +8,10 @@
 
 - Get into programming algorithm and logic diagram
 - Implement Javascript DOM and Events fundamentals
+- Go beyind the cirriculumn of the task and utilize:
+  - Employ multiline CSS style injection
+  - Add blinking CSS animation for the winner
+  - Hide/unhide dice and hold button when required throughtout the game
 
 &emsp;
 
