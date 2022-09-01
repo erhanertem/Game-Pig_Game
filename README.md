@@ -12,6 +12,7 @@
   - Employ multiline CSS style injection
   - Add blinking CSS animation for the winner
   - Hide/unhide dice and hold button when required throughtout the game
+  - Made responsive for tablet and phones for landscape and portrait viewing
 
 &emsp;
 
