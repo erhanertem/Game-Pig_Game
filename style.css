@@ -53,6 +53,15 @@ main {
   }
 }
 
+<<<<<<< Updated upstream
+=======
+@media only screen and (max-height: 768px) and (orientation: landscape) {
+  html {
+    font-size: 25%;
+  }
+}
+
+>>>>>>> Stashed changes
 .player {
   flex: 50%;
   padding: 9rem;
