@@ -63,6 +63,11 @@ main {
   margin-bottom: auto;
 }
 
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
 .player--active {
   background-color: rgba(255, 255, 255, 0.4);
 }

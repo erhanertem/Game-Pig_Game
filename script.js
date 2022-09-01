@@ -18,6 +18,7 @@ const storeScore2 = document.querySelector('#score--2');
 const currentScores = document.querySelectorAll('.current-score');
 const currentScore1 = document.querySelector('#current--1');
 const currentScore2 = document.querySelector('#current--2');
+const playerActive = document.querySelector('.player--active');
 
 function resetGame() {
   for (let i = 0; i <= 1; i++) {
@@ -40,7 +41,7 @@ function rollDice() {
   diceFace.src = `dice-${diceValue}.png`; // show the dice face of corresponding number by diverging the src attribute of the img element
 }
 
-function startGame($currentPlayer) {
+function startGame() {
   //ROLL DICE & DISPLAY
   rollDice(); //generate a random dice roll
   //PITSTOP: IS IT A 1?
@@ -62,13 +63,13 @@ function storeScore() {
   if (currentPlayer === 1) {
     scorePlayer1 += currentSessionScore;
     storeScore1.textContent = `${scorePlayer1}`;
-    if (scorePlayer1 >= 100) {
+    if (scorePlayer1 >= 10) {
       winnerPopup('player1');
     }
   } else {
     scorePlayer2 += currentSessionScore;
     storeScore2.textContent = `${scorePlayer2}`;
-    if (scorePlayer2 >= 100) {
+    if (scorePlayer2 >= 10) {
       winnerPopup('player2');
     }
   }
@@ -82,7 +83,6 @@ function switchPlayers() {
   for (let i = 0; i <= 1; i++) {
     currentScores[i].textContent = '0';
   } // current score only reset
-  // diceFace.style.visibility = 'visible'; // turn off dice img till next draw
   currentSessionScore = 0;
   if (currentPlayer === 1) {
     currentPlayer = 2;
@@ -102,6 +102,14 @@ function winnerPopup($winner) {
   } // current score only reset
   scorePlayer1 = 0;
   scorePlayer2 = 0;
+
+  // create styles object
+  const styles = {
+    backgroundColor: "'rgba(0, 0, 0, .8)",
+    animation: 'blinker 1s linear infinite',
+  };
+  // apply styles to the playerActive
+  Object.assign(playerActive.style, styles);
 
   console.log(`winner is ${$winner}`);
 }
