@@ -20,6 +20,12 @@ const currentScore1 = document.querySelector('#current--1');
 const currentScore2 = document.querySelector('#current--2');
 const playerActive = document.querySelector('.player--active');
 
+// create victory CSS object
+let animationStyles = {
+  backgroundColor: 'rgba(0, 0, 0, .8)',
+  animation: 'blinker 1s linear infinite',
+};
+
 function resetGame() {
   for (let i = 0; i <= 1; i++) {
     currentScores[i].textContent = '0';
@@ -28,6 +34,15 @@ function resetGame() {
   rollDiceBtn.style.visibility = 'visible';
   diceFace.style.visibility = 'hidden'; // turn off dice img till next draw
   holdRollBtn.style.visibility = 'hidden';
+
+  //reset victory CSS object to default
+  animationStyles = {
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    animation: '',
+  };
+  // apply styles to the playerActive
+  Object.assign(playerActive.style, animationStyles);
+
   currentSessionScore = 0;
   diceValue = '';
 }
@@ -103,13 +118,12 @@ function winnerPopup($winner) {
   scorePlayer1 = 0;
   scorePlayer2 = 0;
 
-  // create styles object
-  const styles = {
-    backgroundColor: "'rgba(0, 0, 0, .8)",
+  animationStyles = {
+    backgroundColor: 'rgba(0, 0, 0, .8)',
     animation: 'blinker 1s linear infinite',
   };
   // apply styles to the playerActive
-  Object.assign(playerActive.style, styles);
+  Object.assign(playerActive.style, animationStyles);
 
   console.log(`winner is ${$winner}`);
 }
