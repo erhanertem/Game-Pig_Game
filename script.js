@@ -79,13 +79,13 @@ function storeScore() {
     scorePlayer1 += currentSessionScore;
     storeScore1.textContent = `${scorePlayer1}`;
     if (scorePlayer1 >= 10) {
-      winnerPopup('player1');
+      winnerPopup(player1);
     }
   } else {
     scorePlayer2 += currentSessionScore;
     storeScore2.textContent = `${scorePlayer2}`;
     if (scorePlayer2 >= 10) {
-      winnerPopup('player2');
+      winnerPopup(player2);
     }
   }
 }
@@ -124,7 +124,7 @@ function winnerPopup($winner) {
     animation: 'blinker 1s linear infinite',
   };
   // apply styles to the playerActive
-  Object.assign(playerActive.style, animationStyles);
+  Object.assign($winner.style, animationStyles);
 
   console.log(`winner is ${$winner}`);
 }
