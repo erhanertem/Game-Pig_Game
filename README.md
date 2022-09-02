@@ -7,11 +7,11 @@
 ### **Objective:** Create a browser-based two-player game called 'Pig-Game'
 
 - Get into programming algorithm and logic diagram
-- Implement Javascript DOM and Events fundamentals
-- Go beyind the cirriculumn of the task and utilize:
+- Implement JavaScript DOM and Events fundamentals
+- Beyond the curriculum of the task:
   - Employ multiline CSS style injection
   - Add blinking CSS animation for the winner
-  - Hide/unhide dice and hold button when required throughtout the game
+  - Hide/unhide dice and hold button when required throughout the game
   - Made responsive for tablet and phones for landscape and portrait viewing
 
 &emsp;
