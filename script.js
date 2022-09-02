@@ -76,12 +76,16 @@ function startGame() {
   } else {
     //Update current players score value with the dice value
     currentSessionScore += diceValue;
+
     //Update the summed value on the HTML element
-    if (currentPlayer === 1) {
-      currentScore1.textContent = `${currentSessionScore}`;
-    } else if (currentPlayer === 2) {
-      currentScore2.textContent = `${currentSessionScore}`;
-    }
+    // if (currentPlayer === 1) {
+    //   currentScore1.textContent = `${currentSessionScore}`;
+    // } else if (currentPlayer === 2) {
+    //   currentScore2.textContent = `${currentSessionScore}`;
+    // }
+    document.getElementById(
+      `current--${currentPlayer}`
+    ).textContent = `${currentSessionScore}`;
   }
 }
 
@@ -106,15 +110,20 @@ function switchPlayers() {
   player1.classList.toggle('player--active');
   player2.classList.toggle('player--active');
 
-  for (let i = 0; i <= 1; i++) {
-    currentScores[i].textContent = '0';
-  } // current score only reset
+  // for (let i = 0; i <= 1; i++) {
+  //   currentScores[i].textContent = '0';
+  // } // current score only reset
+  document.getElementById(`current--${currentPlayer}`).textContent = 0;
+
   currentSessionScore = 0;
-  if (currentPlayer === 1) {
-    currentPlayer = 2;
-  } else {
-    currentPlayer = 1;
-  }
+
+  // if (currentPlayer === 1) {
+  //   currentPlayer = 2;
+  // } else {
+  //   currentPlayer = 1;
+  // }
+  currentPlayer = currentPlayer === 1 ? 2 : 1;
+
   holdRollBtn.style.visibility = 'hidden';
 }
 
