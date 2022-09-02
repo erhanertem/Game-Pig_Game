@@ -19,6 +19,8 @@ const storeScore2 = document.querySelector('#score--2');
 const currentScores = document.querySelectorAll('.current-score');
 const currentScore1 = document.querySelector('#current--1');
 const currentScore2 = document.querySelector('#current--2');
+// const currentScore1 = document.getElementById('current--1'); // Alternate way of writing a query selector for an Id
+// const currentScore2 = document.getElementById('current--2'); // Alternate way of writing a query selector for an Id
 const playerActive = document.querySelector('.player--active');
 
 // create victory CSS object
